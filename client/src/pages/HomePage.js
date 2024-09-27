@@ -3,14 +3,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DoctorList from "../components/DoctorList";
 import Layout from "./../components/Layout";
+import api from "../ApiService/ApiService";
 
 const HomePage = () => {
   const [doctors, setDoctors] = useState([]);
   // login user data
   const getUserData = async () => {
     try {
-      const res = await axios.get(
-        "/api/user/getAllDoctors",
+      const res = await api.get(
+        "https://doc-appoint-snowy.vercel.app/api/user/getAllDoctors",
 
         {
           headers: {

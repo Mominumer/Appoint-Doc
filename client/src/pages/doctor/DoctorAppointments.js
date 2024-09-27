@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "./../../components/Layout";
 
 import axios from "axios";
+import api from "../../ApiService/ApiService";
 
 import { message, Table } from "antd";
 import moment from "moment";
@@ -11,7 +12,7 @@ const DoctorAppointments = () => {
 
   const getAppointments = async () => {
     try {
-      const res = await axios.get("/api/doctor/doctor-appointments", {
+      const res = await api.get("https://doc-appoint-snowy.vercel.app/api/doctor/doctor-appointments", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -30,8 +31,8 @@ const DoctorAppointments = () => {
 
   const handleStatus = async (record, status) => {
     try {
-      const res = await axios.post(
-        "/api/doctor/update-status",
+      const res = await api.post(
+        "https://doc-appoint-snowy.vercel.app/api/doctor/update-status",
         { appointmentsId: record._id, status },
         {
           headers: {

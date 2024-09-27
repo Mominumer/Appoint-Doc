@@ -2,13 +2,14 @@ import { Table, message } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "./../../components/Layout";
+import api from "../../ApiService/ApiService";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   //getUsers
   const getDoctors = async () => {
     try {
-      const res = await axios.get("/api/admin/getAllDoctors", {
+      const res = await api.get("https://doc-appoint-snowy.vercel.app/api/admin/getAllDoctors", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -24,8 +25,8 @@ const Doctors = () => {
   // handle account
   const handleAccountStatus = async (record, status) => {
     try {
-      const res = await axios.post(
-        "/api/admin/changeAccountStatus",
+      const res = await api.post(
+        "https://doc-appoint-snowy.vercel.app/api/admin/changeAccountStatus",
         { doctorId: record._id, userId: record.userId, status: status },
         {
           headers: {

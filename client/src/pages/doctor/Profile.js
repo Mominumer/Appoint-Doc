@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { hideLoading, showLoading } from "../../redux/features/alertSlice";
 import Layout from "./../../components/Layout";
+import api from "../../ApiService/ApiService";
 
 
 const Profile = () => {
@@ -21,8 +22,9 @@ const Profile = () => {
       dispatch(showLoading());
       const starttime = values.starttime.format("HH:mm");
       const endtime = values.endtime.format("HH:mm");
-      const res = await axios.post(
-        "/api/doctor/updateProfile",
+
+      const res = await api.post(
+        "https://doc-appoint-snowy.vercel.app/api/doctor/updateProfile",
         {
           ...values,
           userId: user._id,
@@ -53,8 +55,8 @@ const Profile = () => {
   //getDOc Details
   const getDoctorInfo = async () => {
     try {
-      const res = await axios.post(
-        "/api/doctor/getDoctorInfo",
+      const res = await api.post(
+        "https://doc-appoint-snowy.vercel.app/api/doctor/getDoctorInfo",
         { userId: params.id },
         {
           headers: {

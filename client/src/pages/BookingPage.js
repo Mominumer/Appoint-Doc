@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import "./../styles/LayoutStyles.css";
+import api from "../ApiService/ApiService";
 
 const BookingPage = () => {
   const { user } = useSelector((state) => state.user);
@@ -18,8 +19,8 @@ const BookingPage = () => {
   // login user data
   const getUserData = async () => {
     try {
-      const res = await axios.post(
-        "/api/doctor/getDoctorById",
+      const res = await axios.api(
+        "https://doc-appoint-snowy.vercel.app/api/doctor/getDoctorById",
         { doctorId: params.doctorId },
         {
           headers: {
@@ -39,8 +40,8 @@ const BookingPage = () => {
 const handleAvailability = async () => {
   try {
     dispatch(showLoading());
-    const res = await axios.post(
-      "/api/user/booking-availbility",
+    const res = await api.post(
+      "https://doc-appoint-snowy.vercel.app/api/user/booking-availbility",
       {
         doctorId: params.doctorId,
         date,
@@ -74,8 +75,8 @@ const handleAvailability = async () => {
         return alert("Date & Time Required");
       }
       dispatch(showLoading());
-      const res = await axios.post(
-        "/api/user/book-appointment",
+      const res = await axios.api(
+        "https://doc-appoint-snowy.vercel.app/api/user/book-appointment",
         {
           doctorId: params.doctorId,
           userId: user._id,

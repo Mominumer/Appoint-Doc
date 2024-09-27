@@ -9,6 +9,7 @@ import {
 } from "../redux/features/alertSlice";
 import { setUser } from "../redux/features/userSlice";
 import Layout from "./../components/Layout";
+import api from "../ApiService/ApiService";
 
 const NotificationPage = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,8 @@ const NotificationPage = () => {
 const handleMarkAllRead = async () => {
   try {
     dispatch(showLoading());
-    const res = await axios.post(
-      "/api/user/get-all-notification",
+    const res = await api.post(
+      "https://doc-appoint-snowy.vercel.app/api/user/get-all-notification",
       {
         userId: user._id,
       },
@@ -58,8 +59,8 @@ const handleMarkAllRead = async () => {
 const handleDeleteAllRead = async () => {
   try {
     dispatch(showLoading());
-    const res = await axios.post(
-      "/api/user/delete-all-notification",
+    const res = await api.post(
+      "https://doc-appoint-snowy.vercel.app/api/user/delete-all-notification",
       {
         userId: user._id,
       },
