@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import { setUser } from "../redux/features/userSlice";
-import api from "../ApiService/ApiService";
 
 
 export default function ProtectedRoute({ children }) {
@@ -15,8 +14,8 @@ export default function ProtectedRoute({ children }) {
       const getUser = async () => {
         try {
           dispatch(showLoading());
-          const {data} = await api.post(
-            "https://doc-appoint-snowy.vercel.app/api/user/getUserData",
+          const {data} = await axios.post(
+            "/api/user/getUserData",
             { token: localStorage.getItem("token") },
             {
               headers: {

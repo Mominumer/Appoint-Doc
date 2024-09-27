@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import Layout from "./../components/Layout";
-import api from "../ApiService/ApiService";
+
 const ApplyDoctor = () => {
   const { user } = useSelector((state) => state.user);
 
@@ -17,8 +17,8 @@ const ApplyDoctor = () => {
       dispatch(showLoading());
       const starttime = values.starttime.format("HH:mm");
       const endtime = values.endtime.format("HH:mm");
-      const res = await api.post(
-        "https://doc-appoint-snowy.vercel.app/api/user/apply-doctor",
+      const res = await axios.post(
+        "/api/user/apply-doctor",
         {
           ...values,
           userId: user._id,

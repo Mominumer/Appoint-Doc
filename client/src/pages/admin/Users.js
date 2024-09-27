@@ -2,14 +2,13 @@ import { Table } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "./../../components/Layout";
-import api from "../../ApiService/ApiService";
 const Users = () => {
   const [users, setUsers] = useState([]);
 
   //getUsers
   const getUsers = async () => {
     try {
-      const res = await api.get("https://doc-appoint-snowy.vercel.app/api/admin/getAllUsers", {
+      const res = await axios.get("/api/admin/getAllUsers", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

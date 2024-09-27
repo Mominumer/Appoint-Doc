@@ -4,7 +4,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
-import api from "../ApiService/ApiService";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ const Login = () => {
   const submitHandler = async (values) => {
     try {
       dispatch(showLoading());
-      const { data } = await api.post("https://doc-appoint-snowy.vercel.app/api/user/login", values);
+      const { data } = await axios.post("/api/user/login", values);
       window.location.reload();
       dispatch(hideLoading());
       if (data.success) {

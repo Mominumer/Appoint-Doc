@@ -3,7 +3,6 @@ import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Layout from "./../components/Layout";
-import api from "../ApiService/ApiService";
 
 
 const Appointments = () => {
@@ -11,7 +10,7 @@ const Appointments = () => {
 
   const getAppointments = async () => {
     try {
-      const res = await api.get("https://doc-appoint-snowy.vercel.app/api/user/user-appointments", {
+      const res = await axios.get("/api/user/user-appointments", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
