@@ -15,7 +15,7 @@ export default function ProtectedRoute({ children }) {
         try {
           dispatch(showLoading());
           const {data} = await axios.post(
-            "/api/user/getUserData",
+            `${process.env.REACT_APP_BACKEND_URL}/api/user/getUserData`,
             { token: localStorage.getItem("token") },
             {
               headers: {

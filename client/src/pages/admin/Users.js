@@ -8,7 +8,7 @@ const Users = () => {
   //getUsers
   const getUsers = async () => {
     try {
-      const res = await axios.get("/api/admin/getAllUsers", {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/admin/getAllUsers`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

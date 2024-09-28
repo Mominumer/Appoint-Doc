@@ -10,7 +10,7 @@ const HomePage = () => {
   const getUserData = async () => {
     try {
       const res = await axios.get(
-        "/api/user/getAllDoctors",
+        `${process.env.REACT_APP_BACKEND_URL}/api/user/getAllDoctors`,
 
         {
           headers: {

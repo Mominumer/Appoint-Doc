@@ -11,7 +11,7 @@ const DoctorAppointments = () => {
 
   const getAppointments = async () => {
     try {
-      const res = await axios.get("/api/doctor/doctor-appointments", {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/doctor/doctor-appointments`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -31,7 +31,7 @@ const DoctorAppointments = () => {
   const handleStatus = async (record, status) => {
     try {
       const res = await axios.post(
-        "/api/doctor/update-status",
+        `${process.env.REACT_APP_BACKEND_URL}/api/doctor/update-status`,
         { appointmentsId: record._id, status },
         {
           headers: {

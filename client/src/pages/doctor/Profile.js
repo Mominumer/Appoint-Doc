@@ -22,7 +22,7 @@ const Profile = () => {
       const starttime = values.starttime.format("HH:mm");
       const endtime = values.endtime.format("HH:mm");
       const res = await axios.post(
-        "/api/doctor/updateProfile",
+        `${process.env.REACT_APP_BACKEND_URL}/api/doctor/updateProfile`,
         {
           ...values,
           userId: user._id,
@@ -54,7 +54,7 @@ const Profile = () => {
   const getDoctorInfo = async () => {
     try {
       const res = await axios.post(
-        "/api/doctor/getDoctorInfo",
+        `${process.env.REACT_APP_BACKEND_URL}/api/doctor/getDoctorInfo`,
         { userId: params.id },
         {
           headers: {

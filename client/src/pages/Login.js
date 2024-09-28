@@ -13,7 +13,7 @@ const Login = () => {
   const submitHandler = async (values) => {
     try {
       dispatch(showLoading());
-      const { data } = await axios.post("/api/user/login", values);
+      const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/login`, values);
       window.location.reload();
       dispatch(hideLoading());
       if (data.success) {
